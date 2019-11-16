@@ -1,9 +1,9 @@
 <template>
     <div class="edit-card">
+        <h2>Edit Todo</h2>
         <form>
             <label>
-                <textarea v-model="getEditingCard.body" class="edit-card__text-area"
-                          @keydown.enter.prevent="saveEditsAndExit">
+                <textarea v-model="getEditingCard.body" @keydown.enter.prevent="saveEditsAndExit">
                 </textarea>
             </label>
             <button @click.prevent="saveEditsAndExit"
@@ -35,18 +35,16 @@
 
 <style lang="sass">
     .edit-card
-        margin-top: 10px
-
-        &__text-area
-            width: 100%
-            border-radius: 5px
-            height: 50px
-
+        h2
+            margin-bottom: 10px
+            color: #2f4252
         &__button
-            margin-top: 10px
-            padding: 10px 20px
+            margin-top: 5px
+            padding: 15px
+            font-size: 18px
+            color: white
+            font-weight: bold
             border-radius: 5px
-            margin-right: 10px
             cursor: pointer
             background-color: #7ca65c
 </style>

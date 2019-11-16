@@ -66,13 +66,12 @@
             display: flex;
 
             &_add {
-                padding: 10px;
+                padding: 15px;
                 font-size: 18px;
                 margin-right: 25px;
                 font-weight: bold;
                 box-shadow: none;
                 border: none;
-                border-bottom: outset;
                 border-radius: 5px;
                 outline: none;
                 background-color: #7ca65c;

@@ -9,7 +9,7 @@
         <!-- Блок перехода на конкретные страницы-->
         <ul class="pagination__mid">
             <li v-if="hasFirst()" class="pagination__mid__el">
-                <a href="#" @click="changePage(1)">1</a>
+                <a href="#" @click="changePage(1)">{{page}}</a>
             </li>
             <li v-if="hasFirst()" class="pagination__mid__el">...</li>
             <li v-for="page in pages" :key="page" class="pagination__mid__el"
@@ -130,7 +130,7 @@
     .pagination
         display: flex
         justify-content: space-between
-        margin-top: 30px
+        margin-top: 20px
         font-size: 13px
 
         & a
