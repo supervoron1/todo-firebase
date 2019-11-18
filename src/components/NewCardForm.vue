@@ -16,7 +16,7 @@
 </template>
 
 <script>
-  import {mapActions} from 'vuex';
+  import {mapActions, mapMutations} from 'vuex';
 
   export default {
     name: 'ListForm',
@@ -27,6 +27,7 @@
     },
     methods: {
       ...mapActions(["addCard"]),
+      ...mapMutations(["setCurrentPageFirst"]),
       /**
        * Отправляет не пустую запись на сервер
        */
@@ -35,6 +36,7 @@
           const submit = {body: this.body, createdAt: Date.now(), isDone: false};
           this.addCard(submit);
           this.body = '';
+          this.setCurrentPageFirst();
         }
       },
       /**

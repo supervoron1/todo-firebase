@@ -12,19 +12,7 @@
                 :options="getPaginationOptions"
                 :total="getAllCards.length"
             ></pagination>
-            <!-- Получение массива задач, в соответствии с текущей страницей
-            и количеством отображения на странице.
-            События: удаления и перехода на страницу редактирования.-->
-            <ul class="cards__list">
-                <render-list v-for="card in getLimitList"
-                             :key="card.id"
-                             :card="card"
-                             @saveIsDoneStatus="saveIsDoneStatus"
-                             @remove="removeCard"
-                             @goToEdit="goToEditCard"
-                >
-                </render-list>
-            </ul>
+            <todo-list/>
         </div>
         <!-- Отображение страницы редактирования.-->
         <edit-card v-else
@@ -34,24 +22,34 @@
 </template>
 
 <script>
-  import {mapGetters, mapActions, mapMutations} from 'vuex';
+  import {mapGetters, mapMutations, mapActions} from 'vuex';
   import ListForm from '../components/NewCardForm'
-  import RenderList from '../components/RenderList'
   import EditCard from '../components/EditCard'
   import Pagination from '../components/Pagination'
+  import TodoList from "../components/TodoList";
 
 
   export default {
     name: 'home',
-
-    computed: mapGetters(['getAllCards',
+    data() {
+      return {
+        id: this.$route.params['id']
+      }
+    },
+    watch: {
+      $route(toR) {
+        this.id = toR.params['id']
+      }
+    },
+    computed: mapGetters([
+      'getAllCards',
       'getShowEdit',
       'getCurrentPage',
-      'getLimitList',
       'getPaginationOptions']),
     methods: {
       ...mapActions(['firestore', 'removeCard', 'saveEdits']),
-      ...mapMutations(['changeEditingCardData',
+      ...mapMutations([
+        'changeEditingCardData',
         'changeShowEdit',
         'changeCurrentPage',
         'setCurrentPageFirst',
@@ -70,7 +68,7 @@
        */
       saveEdited(card) {
         this.saveEdits(card);
-        this.setCurrentPageFirst();
+        //this.setCurrentPageFirst();
         this.changeShowEdit();
       },
       /**
@@ -80,24 +78,28 @@
         this.saveEdits(card)
       }
     },
-    components: {ListForm, RenderList, EditCard, Pagination},
+
+    components: {ListForm, EditCard, Pagination, TodoList},
     /**
      * загружает данные созданных задач
      * @return {Promise<void>}
      */
     async mounted() {
       await this.firestore();
-    }
+    },
+
   }
 </script>
 
 <style lang="sass">
-    .container
-        &__data
-            padding: 20px
+    body
+        background-image: url(../assets/bgi.jpg)
 
-        .cards__h
-            color: #2f4252
-            margin-top: 15px
+        .container
+            &__data
+                padding: 20px
 
+            .cards__h
+                color: #2f4252
+                margin-top: 15px
 </style>

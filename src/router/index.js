@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-import RenderList from "../components/RenderList";
 
 Vue.use(VueRouter);
 
@@ -12,8 +11,8 @@ export default new VueRouter({
       component: Home
     },
     {
-      path: '/page',
-      component: RenderList
+      path: '/page/:id',
+      component: Home
     }
   ],
   mode: 'history'
