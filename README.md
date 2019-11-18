@@ -1,7 +1,7 @@
 # Todo-firebase
 
-### Customize configuration
-Check this out at: [todo.vorontsov.biz](https://todo.vorontsov.biz/).
+### Check this out at:
+[todo.vorontsov.biz](https://todo.vorontsov.biz/).
 
 ![Screenshot](screenshot.png)
 
